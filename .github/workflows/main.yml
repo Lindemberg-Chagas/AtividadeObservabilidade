@@ -1,0 +1,37 @@
+name: OBSERVABILIDADE
+on:
+  pull_request:
+    branches:
+      - main
+jobs:  
+  
+  OBSERVER:
+   runs-on: ubuntu-latest
+      
+   steps:
+      - name: Configure SSH GCP Cloud
+        run: |
+         mkdir -p ~/.ssh/
+          echo "$SSH_KEY" > ~/.ssh/google-cloud.key
+          chmod 600 ~/.ssh/google-cloud.key
+          cat >>~/.ssh/config <<END
+          Host google-cloud
+            HostName $SSH_HOST
+            User $SSH_USER
+            IdentityFile ~/.ssh/google-cloud.key
+            StrictHostKeyChecking no
+          END
+        env:
+          SSH_USER: ${{ secrets.OBS_SSH_USER }}
+          SSH_KEY: ${{ secrets.OBS_SSH_KEY }}
+          SSH_HOST: ${{ secrets.OBS_SSH_HOST }}     
+  
+
+      - name: Deploy the application
+        run: |
+          scp -r . google-cloud:/home/Lindemberg/Observar
+          ssh google-cloud 'sudo docker-compose -f aplicacao.yml up -d'      
+          ssh google-cloud 'sudo docker-compose -f grafana.yml up -d'
+          ssh google-cloud 'sudo docker-compose -f fluentbit.yml up -d'
+          
+  
