@@ -6,12 +6,17 @@ services:
     networks:
       - compose-bridge
 
-
   alurabooks:
-  
+    image: aluradocker/alura-books:1.0
+    container_name: alurabooks
+    networks:
+      - compose-bridge
+    ports:
+      - 3000:3000
 
+networks:
+  compose-brigde:
+    drive: brigde
       
-    
-    
-    
-
+  
+  
