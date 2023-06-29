@@ -14,6 +14,6 @@ jobs:
         username: ${{ secrets.OBS_SSH_USER }}
         port: ${{ secrets.PORT }}
         key: ${{ secrets.OBS_SSH_PRIVATE_KEY }}
-        source: "aplicacao.yml"
-        target: ~/Lindemberg/Observar/
+        source: "aplicacao.yml,fluentbit.conf,fluentbit.yml,grafana.yml"
+        target: ~/Lindemberg/
   
