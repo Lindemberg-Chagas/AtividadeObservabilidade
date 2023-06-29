@@ -15,5 +15,4 @@ jobs:
         port: ${{ secrets.PORT }}
         key: ${{ secrets.OBS_SSH_PRIVATE_KEY }}
         source: "aplicacao.yml,fluentbit.conf,fluentbit.yml,grafana.yml"
-        target: ~/Lindemberg/
-  
+        target: ~/Lindemberg  
