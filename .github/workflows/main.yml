@@ -10,10 +10,10 @@ jobs:
     - name: copy file via ssh key
       uses: appleboy/scp-action@v0.1.4
       with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
+        host: ${{ secrets.OBS_SSH_HOST }}
+        username: ${{ secrets.OBS_SSH_USER }}
         port: ${{ secrets.PORT }}
-        key: ${{ secrets.KEY }}
-        source: "tests/a.txt,tests/b.txt"
-        target: your_server_target_folder_path
+        key: ${{ secrets.OBS_SSH_PRIVATE_KEY }}
+        source: "aplicacao.yml,grafana.yml,fluentbit.yml,fluentbit.conf,"
+        target: /home/Lindemberg/Observar
   
