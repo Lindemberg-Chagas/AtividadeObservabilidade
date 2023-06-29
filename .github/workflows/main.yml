@@ -3,7 +3,7 @@ on: [push]
 jobs:
 
   build:
-    name: Push
+    name: Build
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -15,4 +15,4 @@ jobs:
         port: ${{ secrets.PORT }}
         key: ${{ secrets.OBS_SSH_PRIVATE_KEY }}
         source: "aplicacao.yml"
-        target: ~/Lindemberg/Docker-Compose/  
+        target: ~/Lindemberg/Docker-Compose/
